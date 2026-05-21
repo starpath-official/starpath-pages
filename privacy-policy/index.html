@@ -71,6 +71,30 @@
         font-weight: 700;
       }
 
+      .language-switch {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 20px 0 34px;
+      }
+
+      .language-switch a,
+      .language-switch span {
+        display: inline-flex;
+        align-items: center;
+        min-height: 34px;
+        padding: 0 13px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        font: 800 13px/1 ui-sans-serif, system-ui, sans-serif;
+        text-decoration: none;
+      }
+
+      .language-switch span {
+        color: #fffaf0;
+        background: var(--accent);
+      }
+
       table {
         width: 100%;
         border-collapse: collapse;
@@ -120,10 +144,14 @@
           개발자: Poison Arrow Remover<br>
           문의: starpath.official.app@gmail.com
         </p>
+        <nav class="language-switch" aria-label="Privacy policy language">
+          <span>한국어</span>
+          <a href="./en/">English</a>
+        </nav>
 
         <h2>1. 기본 원칙</h2>
         <p>
-          Starpath는 사용자가 문제를 적고, 명상한 뒤, 팔정도 성찰을 통해 별을
+          Starpath는 사용자가 문제를 적고, 명상한 뒤, 8단계 구조화된 성찰을 통해 별을
           하나씩 밝히는 자기성찰 앱입니다.
         </p>
         <p>Starpath의 가장 중요한 원칙은 다음과 같습니다.</p>
@@ -148,7 +176,7 @@
           <tbody>
             <tr>
               <td>성찰 기록</td>
-              <td>사용자가 입력한 문제, 팔정도 성찰 답변, 별 완료 상태</td>
+              <td>사용자가 입력한 문제, 8단계 성찰 답변, 별 완료 상태</td>
               <td>사용자 기기 내 로컬 저장소</td>
               <td>성찰 여정 저장, 기록 확인, 별자리 진행률 표시</td>
             </tr>

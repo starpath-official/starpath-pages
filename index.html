@@ -61,9 +61,15 @@
         line-height: 1.75;
       }
 
+      .links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 18px;
+      }
+
       a {
         display: inline-flex;
-        margin-top: 18px;
         color: #07111f;
         background: var(--accent);
         padding: 13px 18px;
@@ -88,7 +94,10 @@
           Remover. Personal reflection records are stored locally on the user's
           device by default.
         </p>
-        <a href="./privacy-policy/">개인정보 처리방침 보기</a>
+        <div class="links" aria-label="Privacy policy links">
+          <a href="./privacy-policy/">개인정보 처리방침</a>
+          <a href="./privacy-policy/en/">Privacy Policy</a>
+        </div>
         <p class="support">Support: starpath.official.app@gmail.com</p>
       </section>
     </main>
