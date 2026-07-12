@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>사업자 정보 | Starlit Map</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07111f;
+        --panel: rgba(255, 255, 255, 0.075);
+        --line: rgba(255, 255, 255, 0.14);
+        --text: #f7fbff;
+        --muted: rgba(247, 251, 255, 0.7);
+        --accent: #9bdcff;
+        --gold: #f7d58a;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+        background:
+          radial-gradient(circle at 12% 8%, rgba(155, 220, 255, 0.18), transparent 30rem),
+          radial-gradient(circle at 88% 28%, rgba(247, 213, 138, 0.13), transparent 26rem),
+          var(--bg);
+        color: var(--text);
+      }
+
+      main {
+        width: min(820px, calc(100% - 36px));
+        margin: 0 auto;
+        padding: 72px 0;
+      }
+
+      .card {
+        padding: clamp(26px, 6vw, 52px);
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: var(--panel);
+        box-shadow: 0 28px 90px rgba(0, 0, 0, 0.34);
+        backdrop-filter: blur(18px);
+      }
+
+      .eyebrow {
+        margin: 0 0 12px;
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0 0 12px;
+        font: 700 clamp(34px, 7vw, 58px)/1.05 Georgia, serif;
+      }
+
+      .intro {
+        margin: 0 0 34px;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+
+      dl {
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        margin: 0;
+        border-top: 1px solid var(--line);
+      }
+
+      dt, dd {
+        margin: 0;
+        padding: 17px 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      dt {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      dd {
+        color: var(--text);
+        font-weight: 650;
+        line-height: 1.6;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 28px;
+      }
+
+      a {
+        display: inline-flex;
+        padding: 12px 16px;
+        border-radius: 999px;
+        background: var(--accent);
+        color: #07111f;
+        font-size: 14px;
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      a.secondary {
+        border: 1px solid var(--line);
+        background: transparent;
+        color: var(--text);
+      }
+
+      .note {
+        margin: 24px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      @media (max-width: 620px) {
+        main { padding: 32px 0; }
+        dl { grid-template-columns: 1fr; }
+        dt { padding-bottom: 4px; border-bottom: 0; }
+        dd { padding-top: 0; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <article class="card">
+        <p class="eyebrow">Starlit Map · Legal</p>
+        <h1>사업자 정보</h1>
+        <p class="intro">Starlit Map의 개발·운영 및 디지털 서비스 판매자 정보입니다.</p>
+        <dl>
+          <dt>상호</dt>
+          <dd>포이즌 애로우 리무버 (Poison Arrow Remover)</dd>
+          <dt>대표자</dt>
+          <dd>안자훈</dd>
+          <dt>사업자등록번호</dt>
+          <dd>814-26-02009</dd>
+          <dt>통신판매업 신고번호</dt>
+          <dd>2026-서울용산-0726</dd>
+          <dt>통신판매업 신고기관</dt>
+          <dd>서울특별시 용산구청</dd>
+          <dt>사업장 소재지</dt>
+          <dd>서울특별시 용산구 보광로7길 45-9, 3층 301호 (보광동)</dd>
+          <dt>고객지원 이메일</dt>
+          <dd>starlit.map.official@gmail.com</dd>
+        </dl>
+        <div class="actions">
+          <a href="https://www.ftc.go.kr/bizCommPop.do?wrkr_no=8142602009" target="_blank" rel="noopener">공정거래위원회 사업자정보 확인</a>
+          <a class="secondary" href="../">홈으로</a>
+          <a class="secondary" href="./en/">English</a>
+        </div>
+        <p class="note">앱 결제와 환불은 이용한 앱 스토어의 결제 정책과 관련 법령에 따라 처리됩니다.</p>
+      </article>
+    </main>
+  </body>
+</html>
