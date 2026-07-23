@@ -1,130 +1,285 @@
 <!doctype html>
-<html lang="ko">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Starlit Map</title>
+    <meta name="description" content="Starlit Map turns one problem into a calm, private path forward through writing, breathing, and guided reflection.">
+    <meta name="theme-color" content="#050916">
+    <meta property="og:title" content="Starlit Map | A starlit map for inner problems">
+    <meta property="og:description" content="One problem. One breath. One reflection. One light.">
+    <meta property="og:image" content="./assets/images/starlit-map-icon.png">
+    <title>Starlit Map | A starlit map for inner problems</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
     <style>
       :root {
         color-scheme: dark;
-        --bg: #07111f;
-        --panel: rgba(255, 255, 255, 0.08);
-        --text: #f7fbff;
-        --muted: rgba(247, 251, 255, 0.68);
-        --accent: #9bdcff;
+        --ink: #f8f6ee;
+        --mist: #b7c0cf;
+        --night: #050916;
+        --night-deep: #02040b;
+        --sky: #90ddff;
+        --lilac: #bc9bff;
+        --gold: #ffdaa1;
+        --line: rgba(208, 231, 255, 0.16);
+        --panel: rgba(12, 22, 42, 0.68);
+        --serif: "Fraunces", Georgia, serif;
+        --sans: "DM Sans", "Avenir Next", sans-serif;
+        --mono: "DM Mono", monospace;
       }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
 
       body {
         margin: 0;
-        min-height: 100vh;
-        font-family: ui-serif, Georgia, "Apple SD Gothic Neo", serif;
+        overflow-x: hidden;
+        color: var(--ink);
         background:
-          radial-gradient(circle at 20% 10%, rgba(155, 220, 255, 0.2), transparent 32rem),
-          radial-gradient(circle at 80% 30%, rgba(255, 210, 128, 0.14), transparent 28rem),
-          var(--bg);
-        color: var(--text);
+          radial-gradient(ellipse 66rem 50rem at 98% -5%, rgba(104, 183, 255, 0.18), transparent 66%),
+          radial-gradient(ellipse 55rem 44rem at -8% 38%, rgba(162, 109, 255, 0.15), transparent 68%),
+          radial-gradient(ellipse 36rem 32rem at 50% 80%, rgba(255, 187, 104, 0.09), transparent 76%),
+          var(--night);
+        font-family: var(--sans);
       }
 
-      main {
-        width: min(760px, calc(100% - 40px));
-        margin: 0 auto;
-        padding: 88px 0;
+      body::before {
+        position: fixed;
+        z-index: -1;
+        inset: 0;
+        pointer-events: none;
+        content: "";
+        opacity: 0.32;
+        background-image: radial-gradient(rgba(255, 255, 255, 0.72) 0.65px, transparent 0.75px);
+        background-size: 41px 41px;
+        mask-image: linear-gradient(to bottom, #000, transparent 82%);
       }
 
-      .card {
-        padding: 32px;
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        border-radius: 22px;
-        background: var(--panel);
-        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
-        backdrop-filter: blur(18px);
-      }
+      a { color: inherit; }
+      .shell { width: min(1140px, calc(100% - 40px)); margin: 0 auto; }
 
-      .eyebrow {
-        margin: 0 0 14px;
-        color: var(--accent);
-        font: 700 12px/1.2 ui-sans-serif, system-ui, sans-serif;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-      }
-
-      h1 {
-        margin: 0;
-        font-size: clamp(42px, 8vw, 76px);
-        line-height: 0.9;
-      }
-
-      p {
-        max-width: 58ch;
-        color: var(--muted);
-        font-size: 18px;
-        line-height: 1.75;
-      }
-
-      .links {
+      .nav {
         display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 18px;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 88px;
       }
 
-      a {
-        display: inline-flex;
-        color: #07111f;
-        background: var(--accent);
-        padding: 13px 18px;
-        border-radius: 999px;
-        font: 800 15px/1 ui-sans-serif, system-ui, sans-serif;
-        text-decoration: none;
+      .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; font-weight: 700; }
+      .brand img { width: 36px; height: 36px; border-radius: 10px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.44); }
+      .brand span { font-family: var(--serif); font-size: 21px; letter-spacing: -0.04em; }
+      .nav-links { display: flex; align-items: center; gap: 27px; color: var(--mist); font-size: 14px; }
+      .nav-links a { text-decoration: none; transition: color 160ms ease; }
+      .nav-links a:hover { color: var(--ink); }
+
+      .hero { display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(390px, 0.98fr); align-items: center; min-height: 700px; padding: 68px 0 108px; gap: 22px; }
+      .eyebrow { margin: 0 0 21px; color: var(--sky); font: 500 11px/1.2 var(--mono); letter-spacing: 0.16em; text-transform: uppercase; }
+      h1, h2, h3, p { margin-top: 0; }
+      h1 { max-width: 10ch; margin-bottom: 27px; font: 600 clamp(54px, 6.1vw, 84px)/0.98 var(--serif); letter-spacing: -0.064em; }
+      h1 em { color: var(--gold); font-style: normal; }
+      .lede { max-width: 47ch; color: var(--mist); font-size: 18px; line-height: 1.7; }
+      .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 32px; }
+      .button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 21px; border: 1px solid transparent; border-radius: 999px; font-size: 14px; font-weight: 700; text-decoration: none; transition: transform 170ms ease, box-shadow 170ms ease, background 170ms ease; }
+      .button:hover { transform: translateY(-2px); }
+      .button.primary { color: #07101e; background: linear-gradient(105deg, var(--sky), var(--gold) 55%, var(--lilac)); box-shadow: 0 12px 34px rgba(108, 193, 252, 0.2); }
+      .button.secondary { border-color: var(--line); color: var(--ink); background: rgba(255, 255, 255, 0.035); }
+      .note { display: flex; align-items: center; gap: 8px; margin-top: 18px; color: rgba(201, 215, 231, 0.76); font-size: 12px; }
+      .note::before { width: 8px; height: 8px; border-radius: 100%; background: #88e8c0; box-shadow: 0 0 14px #88e8c0; content: ""; }
+
+      .hero-art { position: relative; min-height: 560px; isolation: isolate; }
+      .hero-glow { position: absolute; top: 9%; right: 6%; width: 440px; height: 440px; border-radius: 50%; background: conic-gradient(from 120deg, rgba(136, 224, 255, 0.2), rgba(255, 214, 149, 0.12), rgba(178, 129, 255, 0.25), rgba(136, 224, 255, 0.2)); filter: blur(28px); opacity: 0.75; animation: breathe 7s ease-in-out infinite; }
+      .phone { position: absolute; top: 21px; right: 11%; z-index: 1; width: min(335px, 72vw); padding: 8px; border: 1px solid rgba(224, 243, 255, 0.33); border-radius: 42px; background: #111c2f; box-shadow: 22px 32px 70px rgba(0, 0, 0, 0.52), -12px -10px 42px rgba(122, 196, 255, 0.13); transform: rotate(5.5deg); animation: float 6.5s ease-in-out infinite; }
+      .phone img { display: block; width: 100%; border-radius: 34px; }
+      .light-card { position: absolute; z-index: 2; bottom: 50px; left: 0; width: 255px; padding: 20px; border: 1px solid rgba(234, 244, 255, 0.18); border-radius: 18px; background: rgba(10, 20, 38, 0.77); box-shadow: 0 18px 48px rgba(0, 0, 0, 0.34); backdrop-filter: blur(16px); animation: float-reverse 7.5s ease-in-out infinite; }
+      .light-card .star { display: block; margin-bottom: 12px; color: var(--gold); font-size: 24px; text-shadow: 0 0 18px rgba(255, 219, 158, 0.8); }
+      .light-card strong { display: block; font-size: 15px; }
+      .light-card span { display: block; margin-top: 5px; color: var(--mist); font-size: 13px; line-height: 1.45; }
+
+      .statement { padding: 84px 0 92px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); text-align: center; }
+      .statement p { max-width: 19ch; margin: 0 auto; font: 600 clamp(34px, 4.8vw, 62px)/1.07 var(--serif); letter-spacing: -0.055em; }
+      .statement p span { color: var(--sky); }
+
+      .section { padding: 120px 0; }
+      .section-title { max-width: 13ch; margin-bottom: 56px; font: 600 clamp(38px, 4.4vw, 58px)/1.04 var(--serif); letter-spacing: -0.055em; }
+      .section-kicker { margin-bottom: 15px; color: var(--sky); font: 500 11px/1.2 var(--mono); letter-spacing: 0.16em; text-transform: uppercase; }
+      .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+      .step { min-height: 310px; padding: 28px; overflow: hidden; border: 1px solid var(--line); border-radius: 22px; background: linear-gradient(155deg, rgba(21, 37, 65, 0.75), rgba(8, 15, 29, 0.66)); }
+      .step-index { display: block; margin-bottom: 68px; color: var(--gold); font: 500 12px/1 var(--mono); }
+      .step h3 { margin-bottom: 12px; font: 600 30px/1.04 var(--serif); letter-spacing: -0.045em; }
+      .step p { color: var(--mist); font-size: 15px; line-height: 1.65; }
+      .step:nth-child(2) { transform: translateY(35px); }
+      .step:nth-child(3) { background: linear-gradient(155deg, rgba(41, 29, 76, 0.76), rgba(10, 14, 31, 0.66)); }
+
+      .film { display: grid; grid-template-columns: 0.8fr 1.2fr; align-items: center; gap: clamp(30px, 7vw, 92px); padding: 120px 0; }
+      .film-copy h2 { max-width: 9ch; margin-bottom: 20px; font: 600 clamp(38px, 4.8vw, 61px)/1.04 var(--serif); letter-spacing: -0.06em; }
+      .film-copy p { max-width: 38ch; color: var(--mist); line-height: 1.7; }
+      .film-frame { position: relative; overflow: hidden; aspect-ratio: 16 / 9; border: 1px solid rgba(190, 224, 255, 0.24); border-radius: 24px; background: #02050d; box-shadow: 0 32px 76px rgba(0, 0, 0, 0.42); }
+      .film-frame video { display: block; width: 100%; height: 100%; object-fit: cover; }
+      .film-frame::after { position: absolute; inset: 0; pointer-events: none; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: inherit; content: ""; }
+
+      .screens { padding: 120px 0; border-top: 1px solid var(--line); }
+      .screens-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 42px; }
+      .screens-heading h2 { max-width: 10ch; margin: 0; font: 600 clamp(37px, 4.4vw, 57px)/1.04 var(--serif); letter-spacing: -0.06em; }
+      .screens-heading p { max-width: 36ch; margin: 0; color: var(--mist); line-height: 1.65; }
+      .screen-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+      .screen { overflow: hidden; border: 1px solid var(--line); border-radius: 20px; background: var(--panel); transition: transform 180ms ease, border-color 180ms ease; }
+      .screen:hover { border-color: rgba(166, 222, 255, 0.46); transform: translateY(-6px); }
+      .screen img { display: block; width: 100%; }
+
+      .privacy { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 35px; padding: 44px; border: 1px solid rgba(255, 218, 161, 0.25); border-radius: 26px; background: linear-gradient(108deg, rgba(43, 35, 61, 0.78), rgba(12, 29, 51, 0.73)); }
+      .privacy h2 { max-width: 14ch; margin-bottom: 14px; font: 600 clamp(32px, 4vw, 49px)/1.05 var(--serif); letter-spacing: -0.055em; }
+      .privacy p { max-width: 53ch; margin-bottom: 0; color: var(--mist); line-height: 1.7; }
+
+      footer { margin-top: 120px; padding: 52px 0 45px; border-top: 1px solid var(--line); color: var(--mist); font-size: 13px; line-height: 1.75; }
+      .footer-top { display: flex; align-items: start; justify-content: space-between; gap: 25px; }
+      .footer-links { display: flex; flex-wrap: wrap; gap: 10px 18px; max-width: 500px; }
+      .footer-links a { color: var(--ink); text-underline-offset: 3px; }
+      .business { max-width: 740px; margin-top: 32px; padding-top: 25px; border-top: 1px solid var(--line); }
+      .business strong { color: var(--ink); }
+      .copyright { margin: 25px 0 0; color: rgba(183, 192, 207, 0.64); }
+
+      @keyframes float { 0%, 100% { transform: rotate(5.5deg) translateY(0); } 50% { transform: rotate(4deg) translateY(-13px); } }
+      @keyframes float-reverse { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(11px); } }
+      @keyframes breathe { 0%, 100% { transform: scale(0.94); opacity: 0.57; } 50% { transform: scale(1.08); opacity: 0.9; } }
+
+      @media (max-width: 800px) {
+        .shell { width: min(100% - 30px, 620px); }
+        .nav { min-height: 74px; }
+        .nav-links { gap: 15px; font-size: 12px; }
+        .hero { grid-template-columns: 1fr; min-height: auto; padding: 63px 0 84px; }
+        h1 { max-width: 12ch; }
+        .hero-art { min-height: 470px; margin-top: 8px; }
+        .phone { right: 7%; width: 290px; }
+        .light-card { bottom: 20px; width: 230px; }
+        .statement, .section, .film, .screens { padding: 76px 0; }
+        .steps, .screen-row { grid-template-columns: repeat(2, 1fr); }
+        .step:nth-child(2) { transform: none; }
+        .film { grid-template-columns: 1fr; }
+        .film-copy h2 { max-width: 12ch; }
+        .screens-heading, .privacy, .footer-top { display: block; }
+        .screens-heading p { margin-top: 18px; }
+        .privacy { padding: 30px; }
+        .privacy .button { margin-top: 25px; }
+        .footer-links { margin-top: 20px; }
       }
 
-      .support {
-        margin-top: 18px;
-        font-size: 14px;
-      }
-
-      .legal {
-        margin-top: 10px;
-        font-size: 13px;
-      }
-
-      .business {
-        margin-top: 28px;
-        padding-top: 22px;
-        border-top: 1px solid rgba(255, 255, 255, 0.14);
-        color: var(--muted);
-        font: 500 13px/1.8 ui-sans-serif, system-ui, sans-serif;
-      }
-
-      .business strong {
-        color: var(--text);
+      @media (max-width: 470px) {
+        .nav-links a:first-child { display: none; }
+        .brand span { font-size: 19px; }
+        .hero { padding-top: 48px; }
+        h1 { font-size: 52px; }
+        .lede { font-size: 16px; }
+        .hero-art { min-height: 430px; }
+        .phone { right: 2%; width: 260px; }
+        .light-card { bottom: 5px; padding: 16px; width: 205px; }
+        .steps, .screen-row { grid-template-columns: 1fr; }
+        .screen-row { gap: 18px; }
+        .screen { max-width: 260px; }
       }
     </style>
   </head>
   <body>
-    <main>
-      <section class="card">
-        <p class="eyebrow">Starlit Map</p>
-        <h1>Quiet reflection, one star at a time.</h1>
-        <p>
-          Starlit Map is a meditation and self-reflection app by Poison Arrow
-          Remover. Personal reflection records are stored locally on the user's
-          device by default.
-        </p>
-        <div class="links" aria-label="Privacy policy links">
-          <a href="./privacy-policy/">개인정보 처리방침</a>
-          <a href="./privacy-policy/en/">Privacy Policy</a>
-          <a href="./seller-info/">사업자 정보</a>
-          <a href="./seller-info/en/">Seller Information</a>
+    <header class="shell nav">
+      <a class="brand" href="#top" aria-label="Starlit Map home">
+        <img src="./assets/images/starlit-map-icon.png" alt="Starlit Map app icon">
+        <span>Starlit Map</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#how-it-works">How it works</a>
+        <a href="#privacy">Privacy</a>
+        <a href="https://apps.apple.com/app/id6773640513">Get the app</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="shell hero" aria-labelledby="hero-title">
+        <div>
+          <p class="eyebrow">A starlit map for inner problems</p>
+          <h1 id="hero-title">One problem.<br>One breath.<br>One <em>light.</em></h1>
+          <p class="lede">Write what is weighing on you, settle with one mindful breath, and find a clearer next step through eight gentle reflections.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="https://apps.apple.com/app/id6773640513">Download on the App Store</a>
+            <a class="button secondary" href="#how-it-works">See the path</a>
+          </div>
+          <p class="note">No account. Your reflections stay on your device.</p>
         </div>
-        <p class="support">Support: starlit.map.official@gmail.com</p>
-        <div class="business" aria-label="Business information">
-          <strong>포이즌 애로우 리무버 (Poison Arrow Remover)</strong><br>
-          대표자 안자훈 · 사업자등록번호 814-26-02009<br>
-          통신판매업 신고번호 2026-서울용산-0726 · 신고기관 용산구청
+        <div class="hero-art" aria-label="Starlit Map constellation screen">
+          <div class="hero-glow"></div>
+          <div class="phone"><img src="./assets/images/constellation.jpg" alt="A Starlit Map constellation with stars waiting to be lit"></div>
+          <div class="light-card"><span class="star">✦</span><strong>One reflection, one star.</strong><span>Build a constellation of small moments of clarity.</span></div>
         </div>
-        <p class="legal">© 2026 Poison Arrow Remover. All rights reserved.</p>
+      </section>
+
+      <section class="statement" aria-label="Core message">
+        <div class="shell"><p>Turn one problem into <span>a path forward.</span></p></div>
+      </section>
+
+      <section class="shell section" id="how-it-works" aria-labelledby="how-title">
+        <p class="section-kicker">The quiet ritual</p>
+        <h2 class="section-title" id="how-title">A simple way to meet what is on your mind.</h2>
+        <div class="steps">
+          <article class="step"><span class="step-index">01 / WRITE</span><h3>Name the problem.</h3><p>Put the honest version into words. It is a starting point, not a verdict.</p></article>
+          <article class="step"><span class="step-index">02 / BREATHE</span><h3>Return to your breath.</h3><p>Take a guided pause before reacting. Let the next thought arrive with a little more space.</p></article>
+          <article class="step"><span class="step-index">03 / REFLECT</span><h3>Light one star.</h3><p>Move through eight practical questions. Each completed cycle brings a star back to light.</p></article>
+        </div>
+      </section>
+
+      <section class="shell film" aria-labelledby="film-title">
+        <div class="film-copy">
+          <p class="section-kicker">Meet the ritual</p>
+          <h2 id="film-title">When your mind feels heavy, begin small.</h2>
+          <p>Starlit Map is made for the moments when a problem keeps taking up space. You do not have to solve everything now. Start with one honest sentence.</p>
+          <a class="button secondary" href="https://apps.apple.com/app/id6773640513">Start your first star</a>
+        </div>
+        <div class="film-frame">
+          <video controls playsinline preload="metadata" poster="./assets/images/constellation.jpg">
+            <source src="./assets/video/starlit-map-introduction.mp4" type="video/mp4">
+            Your browser does not support embedded video.
+          </video>
+        </div>
+      </section>
+
+      <section class="shell screens" aria-labelledby="screens-title">
+        <div class="screens-heading">
+          <h2 id="screens-title">A map made from your own reflections.</h2>
+          <p>There is no feed, no public profile, and no pressure to perform. Just a private space to write, breathe, and notice what matters.</p>
+        </div>
+        <div class="screen-row">
+          <div class="screen"><img src="./assets/images/problem.jpg" alt="Starlit Map problem writing screen"></div>
+          <div class="screen"><img src="./assets/images/meditation.jpg" alt="Starlit Map breathing meditation screen"></div>
+          <div class="screen"><img src="./assets/images/reflection.jpg" alt="Starlit Map guided reflection screen"></div>
+          <div class="screen"><img src="./assets/images/constellation.jpg" alt="Starlit Map constellation progress screen"></div>
+        </div>
+      </section>
+
+      <section class="shell" id="privacy" aria-labelledby="privacy-title">
+        <div class="privacy">
+          <div><p class="section-kicker">Private by design</p><h2 id="privacy-title">Your inner notes are yours.</h2><p>Reflection records are stored locally on your device by default. Starlit Map does not require an account to begin your practice.</p></div>
+          <a class="button primary" href="https://apps.apple.com/app/id6773640513">Get Starlit Map</a>
+        </div>
       </section>
     </main>
+
+    <footer>
+      <div class="shell">
+        <div class="footer-top">
+          <a class="brand" href="#top"><img src="./assets/images/starlit-map-icon.png" alt=""><span>Starlit Map</span></a>
+          <div class="footer-links">
+            <a href="./privacy-policy/en/">Privacy Policy</a>
+            <a href="./privacy-policy/">개인정보 처리방침</a>
+            <a href="./seller-info/en/">Seller Information</a>
+            <a href="./seller-info/">사업자 정보</a>
+            <a href="mailto:starlit.map.official@gmail.com">Support</a>
+          </div>
+        </div>
+        <div class="business" aria-label="Business information">
+          <strong>Poison Arrow Remover</strong><br>
+          Representative: Jahoon Ahn · Business Registration No. 814-26-02009<br>
+          Mail-order Sales Registration No. 2026-Seoul-Yongsan-0726 · Registration Authority: Yongsan-gu Office
+        </div>
+        <p class="copyright">© 2026 Poison Arrow Remover. All rights reserved.</p>
+      </div>
+    </footer>
   </body>
 </html>
